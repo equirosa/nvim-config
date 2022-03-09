@@ -23,6 +23,7 @@
         {
           buildInputs = with pkgs; [
             stylua
+            sumneko-lua-language-server
           ];
         }
     );
