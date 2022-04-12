@@ -26,6 +26,7 @@ lsp_installer.on_server_ready(function(server)
 end)
 
 require("lspconfig").rnix.setup({ opts })
+require("lspconfig").gopls.setup({ opts })
 require("lspconfig").clangd.setup(opts)
 local lua_opts = vim.tbl_deep_extend("force", require("user.lsp.settings.sumneko_lua"), opts)
 require("lspconfig").sumneko_lua.setup(lua_opts)
