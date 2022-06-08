@@ -15,6 +15,7 @@
 
     nixpkgsFor = forAllSystems (system: import nixpkgs {inherit system;});
   in {
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.stylua;
     devShell = forAllSystems (
       system: let
         pkgs = nixpkgsFor.${system};
@@ -22,7 +23,6 @@
         pkgs.mkShell
         {
           buildInputs = with pkgs; [
-            stylua
             sumneko-lua-language-server
           ];
         }
