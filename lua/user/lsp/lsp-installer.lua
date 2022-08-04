@@ -26,6 +26,7 @@ lsp_installer.on_server_ready(function(server)
 end)
 
 require("lspconfig").rnix.setup({ opts })
+require("lspconfig").pyright.setup({ opts })
 require("lspconfig").yamlls.setup({ opts })
 require("lspconfig").denols.setup({ opts })
 require("lspconfig").gopls.setup({ opts })
