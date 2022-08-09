@@ -1,0 +1,15 @@
+# https://numtide.github.io/devshell
+[[commands]]
+package = "devshell.cli"
+help = "Per project developer environments"
+
+[[commands]]
+package = "stylua"
+help = "Stylua is a formatter for Lua"
+
+[devshell]
+packages = [ "sumneko-lua-language-server" ]
+
+[[env]]
+name = "EDITOR"
+value = "nvim"
