@@ -72,9 +72,7 @@ cmp.setup({
 				luasnip.expand()
 			elseif luasnip.expand_or_jumpable() then
 				luasnip.expand_or_jump()
-			elseif check_backspace() then
-				fallback()
-			else
+			elseif check_backspace() or true then
 				fallback()
 			end
 		end, {
@@ -110,6 +108,7 @@ cmp.setup({
 		end,
 	},
 	sources = {
+		{ name = "copilot" },
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "buffer" },

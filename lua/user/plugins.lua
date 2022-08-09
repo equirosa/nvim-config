@@ -73,6 +73,8 @@ return packer.startup(function(use)
 		config = function()
 			require("rust-tools").setup({})
 		end,
+		opt = true,
+		ft = "rust",
 	})
 
 	-- Colorschemes
@@ -85,6 +87,22 @@ return packer.startup(function(use)
 	use("hrsh7th/cmp-cmdline") -- cmdline completions
 	use("saadparwaiz1/cmp_luasnip") -- snippet completions
 	use("hrsh7th/cmp-nvim-lsp")
+
+	-- Copilot
+	use("github/copilot.vim")
+	use({
+		"zbirenbaum/copilot.lua",
+		event = { "VimEnter" },
+		config = function()
+			vim.defer_fn(function()
+				require("copilot").setup()
+			end, 100)
+		end,
+	})
+	use({
+		"zbirenbaum/copilot-cmp",
+		module = "copilot_cmp",
+	})
 
 	-- snippets
 	use("L3MON4D3/LuaSnip") --snippet engine
@@ -109,6 +127,12 @@ return packer.startup(function(use)
 
 	-- Git
 	use("lewis6991/gitsigns.nvim")
+	use({
+		"akinsho/git-conflict.nvim",
+		config = function()
+			require("git-conflict").setup()
+		end,
+	})
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
