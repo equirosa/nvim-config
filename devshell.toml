@@ -5,7 +5,3 @@ help = "Per project developer environments"
 
 [devshell]
 packages = [ "sumneko-lua-language-server" ]
-
-[[env]]
-name = "EDITOR"
-value = "nvim"
