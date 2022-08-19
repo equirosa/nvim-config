@@ -80,7 +80,7 @@ local function lsp_keymaps(bufnr)
     opts
   )
   vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.show({ border = "rounded" })<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>d", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 end
 
 M.on_attach = function(client, bufnr)
