@@ -114,7 +114,7 @@ vim.keymap.set('n', '<leader>gp', '<cmd>Git push<CR>')
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', '<leader>w', '<cmd>w<CR>', { silent = true })
 vim.keymap.set('n', '<leader>lf', '<cmd>Format<CR>', { silent = true })
-vim.keymap.set('n', '<leader>sh', '<cmd>split<CR>', { silent = true })
+vim.keymap.set('n', '<leader>ss', '<cmd>split<CR>', { silent = true })
 vim.keymap.set('n', '<leader>sv', '<cmd>vsplit<CR>', { silent = true })
 local directions = { 'h', 'j', 'k', 'l' }
 for _, direction in ipairs(directions) do
