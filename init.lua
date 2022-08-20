@@ -14,14 +14,23 @@ require('packer').startup(function(use)
   use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } } -- Add git related info in the signs columns and popups
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
-  use {'nvim-treesitter/nvim-treesitter', run = ":TSUpdate",} -- Highlight, edit, and navigate code
+  use { 'nvim-treesitter/nvim-treesitter', run = ":TSUpdate", } -- Highlight, edit, and navigate code
   use 'nvim-treesitter/nvim-treesitter-textobjects' -- Additional textobjects for treesitter
+  use 'p00f/nvim-ts-rainbow'
   use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
   use 'williamboman/nvim-lsp-installer' -- Automatically install language servers to stdpath
   use { 'hrsh7th/nvim-cmp', requires = { 'hrsh7th/cmp-nvim-lsp' } } -- Autocompletion
   use { 'L3MON4D3/LuaSnip', requires = { 'saadparwaiz1/cmp_luasnip' } } -- Snippet Engine and Snippet Expansion
-  use { 'navarasu/onedark.nvim',config = function() require('onedark').setup { style = 'darker' } require('onedark').load()
-    end } -- Theme inspired by Atom
+  use "github/copilot.vim"
+  use { "zbirenbaum/copilot.lua",
+    event = { "VimEnter" },
+    config = function()
+      vim.defer_fn(function()
+        require("copilot").setup()
+      end, 100)
+    end, requires = { "zbirenbaum/copilot-cmp", module = "copilot_cmp", } }
+  use { 'navarasu/onedark.nvim',
+    config = function() require('onedark').setup { style = 'darker' } require('onedark').load() end } -- Theme inspired by Atom
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
@@ -65,6 +74,7 @@ vim.o.hlsearch = false
 
 -- Make line numbers default
 vim.wo.number = true
+vim.wo.relativenumber = true
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
@@ -74,6 +84,7 @@ vim.o.breakindent = true
 
 -- Save undo history
 vim.o.undofile = true
+vim.o.undodir = vim.fn.stdpath('cache')
 
 -- Case insensitive searching UNLESS /C or capital in search
 vim.o.ignorecase = true
@@ -85,7 +96,6 @@ vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.cmd [[colorscheme onedark]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -102,6 +112,14 @@ vim.keymap.set('n', '<leader>gp', '<cmd>Git push<CR>')
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+vim.keymap.set('n', '<leader>w', '<cmd>w<CR>', { silent = true })
+vim.keymap.set('n', '<leader>lf', '<cmd>Format<CR>', { silent = true })
+vim.keymap.set('n', '<leader>sh', '<cmd>split<CR>', { silent = true })
+vim.keymap.set('n', '<leader>sv', '<cmd>vsplit<CR>', { silent = true })
+local directions = { 'h', 'j', 'k', 'l' }
+for _, direction in ipairs(directions) do
+  vim.keymap.set('n', '<C-' .. direction .. '>', '<cmd>wincmd ' .. direction .. ' <CR>', { silent = true })
+end
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -202,6 +220,7 @@ require('nvim-treesitter.configs').setup {
       node_decremental = '<c-backspace>',
     },
   },
+  rainbow = { enable = true, extended_mode = true, max_file_lines = nil, },
   textobjects = {
     select = {
       enable = true,
@@ -382,6 +401,7 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = "copilot" },
   },
 }
 
