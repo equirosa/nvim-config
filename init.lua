@@ -108,7 +108,11 @@ vim.o.completeopt = 'menuone,noselect'
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.keymap.set('n', '<leader>ga', '<cmd>Git add %<CR>')
+vim.keymap.set('n', '<leader>gcc', '<cmd>Git commit<CR>')
+vim.keymap.set('n', '<leader>gca', '<cmd>Git commit -a<CR>')
 vim.keymap.set('n', '<leader>gp', '<cmd>Git push<CR>')
+vim.keymap.set('n', '<leader>gs', '<cmd>Git status<CR>')
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
