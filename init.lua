@@ -25,6 +25,7 @@ require('packer').startup(function(use)
     'hrsh7th/nvim-cmp',
     requires = { 'hrsh7th/cmp-nvim-lsp' }
   } -- Autocompletion
+  use 'ray-x/cmp-treesitter'
   use {
     'L3MON4D3/LuaSnip',
     requires = { 'saadparwaiz1/cmp_luasnip' }
@@ -448,6 +449,7 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "copilot" },
+    { name = "treesitter" },
 	},
 })
 
