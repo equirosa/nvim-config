@@ -39,7 +39,7 @@ require('packer').startup(function(use)
       end, 100)
     end, requires = { "zbirenbaum/copilot-cmp", module = "copilot_cmp", } }
   use { 'navarasu/onedark.nvim',
-    config = function() require('onedark').setup { style = 'darker' } require('onedark').load() end } -- Theme inspired by Atom
+    config = function() require('onedark').setup { style = 'warmer' } require('onedark').load() end } -- Theme inspired by Atom
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
