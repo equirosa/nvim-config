@@ -21,6 +21,7 @@ require('packer').startup(function(use)
       require('git-conflict').setup()
     end
   }
+  use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' }
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use { 'nvim-treesitter/nvim-treesitter', run = ":TSUpdate", } -- Highlight, edit, and navigate code
   use 'nvim-treesitter/nvim-treesitter-textobjects' -- Additional textobjects for treesitter
