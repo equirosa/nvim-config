@@ -14,6 +14,7 @@ require('packer').startup(function(use)
   use { 'akinsho/git-conflict.nvim', tag = "*", config = function()
     require('git-conflict').setup()
   end }
+  use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use { 'nvim-treesitter/nvim-treesitter', run = ":TSUpdate", } -- Highlight, edit, and navigate code
   use 'nvim-treesitter/nvim-treesitter-textobjects' -- Additional textobjects for treesitter
@@ -342,6 +343,10 @@ end
 
 -- nvim-cmp supports additional completion capabilities
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true,
+}
 
 -- Enable the following language servers
 local servers = { "clangd", "rust_analyzer", "pyright", "tsserver" }
@@ -366,6 +371,11 @@ for _, lsp in ipairs(nix_servers) do
     capabilities = capabilities,
   })
 end
+
+require('ufo').setup()
+
+vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
 
 -- Example custom configuration for lua
 --
