@@ -356,7 +356,7 @@ capabilities.textDocument.foldingRange = {
 }
 
 -- Enable the following language servers
-local servers = { "clangd", "rust_analyzer", "pyright", "tsserver" }
+local servers = { "rust_analyzer", "pyright", "tsserver" }
 
 -- Ensure the servers above are installed
 require("nvim-lsp-installer").setup({
