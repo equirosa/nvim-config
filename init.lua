@@ -235,6 +235,19 @@ require("nvim-treesitter.configs").setup({
 
 	highlight = { enable = true },
 	indent = { enable = true },
+	refactor = {
+		highlight_definitions = {
+			enable = true,
+			clear_on_cursor_move = true,
+		},
+		highlight_current_scope = { enable = true },
+		smart_rename = {
+			enable = true,
+			keymaps = {
+				smart_rename = "grr",
+			},
+		},
+	},
 	incremental_selection = {
 		enable = true,
 		keymaps = {
@@ -289,6 +302,8 @@ require("nvim-treesitter.configs").setup({
 		},
 	},
 })
+
+require("treesitter-context").setup()
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
