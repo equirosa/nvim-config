@@ -23,9 +23,6 @@ require('packer').startup(function(use)
   }
   use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' }
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
-  use { 'nvim-treesitter/nvim-treesitter', run = ":TSUpdate", } -- Highlight, edit, and navigate code
-  use 'nvim-treesitter/nvim-treesitter-textobjects' -- Additional textobjects for treesitter
-  use 'p00f/nvim-ts-rainbow'
   use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
   use 'onsails/lspkind.nvim'
   use 'williamboman/nvim-lsp-installer' -- Automatically install language servers to stdpath
